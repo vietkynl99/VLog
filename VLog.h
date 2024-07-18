@@ -17,6 +17,12 @@ public:
         vsnprintf(mStringBuffer, sizeof(mStringBuffer) - 1, pFormat, pVlist);
         va_end(pVlist);
 
+        if (tag)
+        {
+            Serial.print('[');
+            Serial.print(tag);
+            Serial.print(']');
+        }
         Serial.println(mStringBuffer);
     }
 };
