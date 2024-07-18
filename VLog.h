@@ -3,8 +3,13 @@
 
 #include <Arduino.h>
 
-#define VLOG(...) VLog::print(TAG, __VA_ARGS__);
-#define VLOG_NO_TAG(...) VLog::print(nullptr, __VA_ARGS__);
+#define VLOG_SERIAL         Serial
+
+#define VLOG_PRINT(...)     VLOG_SERIAL.print(__VA_ARGS__);
+#define VLOG_PRINTLN(...)   VLOG_SERIAL.println(__VA_ARGS__);
+
+#define VLOG(...)           VLog::print(TAG, __VA_ARGS__);
+#define VLOG_NO_TAG(...)    VLog::print(nullptr, __VA_ARGS__);
 
 class VLog
 {
@@ -19,11 +24,11 @@ public:
 
         if (tag)
         {
-            Serial.print('[');
-            Serial.print(tag);
-            Serial.print(']');
+            VLOG_SERIAL.print('[');
+            VLOG_SERIAL.print(tag);
+            VLOG_SERIAL.print(']');
         }
-        Serial.println(mStringBuffer);
+        VLOG_SERIAL.println(mStringBuffer);
     }
 };
 #endif
