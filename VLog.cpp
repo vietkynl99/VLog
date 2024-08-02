@@ -14,7 +14,7 @@ void VLog::print(bool newline, const char *tag, const char *pFormat, ...)
         return;
     }
 
-    static char mStringBuffer[150];
+    char mStringBuffer[VLOG_BUFFER_SIZE];
     va_list pVlist;
     va_start(pVlist, pFormat);
     vsnprintf(mStringBuffer, sizeof(mStringBuffer) - 1, pFormat, pVlist);

@@ -7,6 +7,8 @@
 #define VLOG_PRINTLN(...)   VLog::print(true, nullptr, __VA_ARGS__);
 #define VLOG(...)           VLog::print(true, TAG, __VA_ARGS__);
 
+#define VLOG_BUFFER_SIZE    128
+
 class VLog
 {
 private:
