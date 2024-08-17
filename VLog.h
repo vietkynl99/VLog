@@ -8,6 +8,7 @@
 #define VLOG(...)           VLog::print(true, TAG, __VA_ARGS__);
 
 #define VLOG_BUFFER_SIZE    128
+#define VLOG_FORMAT_SIZE    64
 
 class VLog
 {
@@ -16,6 +17,6 @@ private:
 
 public:
     static void init(Stream *serial);
-    static void print(bool newline, const char *tag, const char *pFormat, ...);
+    static void print(bool newline, const char *tag, const __FlashStringHelper *pFormat, ...);
 };
 #endif

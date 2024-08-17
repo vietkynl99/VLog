@@ -7,17 +7,16 @@ void VLog::init(Stream *serial)
     mSerial = serial;
 }
 
-void VLog::print(bool newline, const char *tag, const char *pFormat, ...)
+void VLog::print(bool newline, const char *tag, const __FlashStringHelper *pFormat, ...)
 {
-    if (mSerial == nullptr)
-    {
-        return;
-    }
-
     char mStringBuffer[VLOG_BUFFER_SIZE];
+    char pcFormat[VLOG_FORMAT_SIZE];
+
+    strncpy_P(pcFormat, (const char*)pFormat, sizeof(pcFormat));
+
     va_list pVlist;
-    va_start(pVlist, pFormat);
-    vsnprintf(mStringBuffer, sizeof(mStringBuffer) - 1, pFormat, pVlist);
+    va_start(pVlist, pcFormat);
+    vsnprintf(mStringBuffer, sizeof(mStringBuffer) - 1, pcFormat, pVlist);
     va_end(pVlist);
 
     if (tag)
