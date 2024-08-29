@@ -23,7 +23,7 @@ void VLog::print(bool newline, const char *tag, const __FlashStringHelper *pForm
     {
         mSerial->print('[');
         mSerial->print(tag);
-        mSerial->print(']');
+        mSerial->print("] ");
     }
     mSerial->print(mStringBuffer);
     if (newline)
