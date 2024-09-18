@@ -14,9 +14,11 @@ class VLog
 {
 private:
     static Stream *mSerial;
+    static void (*pOnLogReceived)(const char *);
 
 public:
     static void init(Stream *serial);
+    static void setOnLogReceived(void (*callback)(const char *));
     static void print(bool newline, const char *tag, const __FlashStringHelper *pFormat, ...);
 };
 #endif
